@@ -12,8 +12,6 @@ public class Sarmis extends Frame implements Runnable, ActionListener {
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
     Thread chat;
-
-    // Constructor for the chat application
     Sarmis (Socket socket) {
         this.socket = socket;
         try {
@@ -22,8 +20,6 @@ public class Sarmis extends Frame implements Runnable, ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Initialize GUI components
         textfield = new TextField();
         textarea = new TextArea();
         press = new Button("PRESS");
@@ -35,13 +31,9 @@ public class Sarmis extends Frame implements Runnable, ActionListener {
         setSize(500, 500);
         setTitle("SARMISHA");
         setVisible(true);
-
-        // Start the thread for receiving messages
         chat = new Thread(this);
         chat.start();
     }
-
-    // Action performed when button is pressed
     public void actionPerformed(ActionEvent e) {
         String msg = textfield.getText();
         textarea.append("SARMISHA: " + msg + "\n");
@@ -54,8 +46,6 @@ public class Sarmis extends Frame implements Runnable, ActionListener {
             ex.printStackTrace();
         }
     }
-
-    // Main method to start the server
     public static void main(String args[]) {
         try {
             ServerSocket serverSocket = new ServerSocket(port); // Specify a port number
@@ -68,8 +58,6 @@ public class Sarmis extends Frame implements Runnable, ActionListener {
             e.printStackTrace();
         }
     }
-
-    // Run method to handle incoming messages
     public void run() {
         while (true) {
             try {
@@ -77,7 +65,6 @@ public class Sarmis extends Frame implements Runnable, ActionListener {
                 textarea.append("MARY: " + msg + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
-                break; // Exit the loop if an exception occurs
             }
         }
     }
